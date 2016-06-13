@@ -8,7 +8,7 @@ This is a temporary script file.
 import numpy as np
 
 action = [2,0,0,0,3,3,3,0,3,0,3,3,3,3,3,0,0,0,0,0,3,3,0,3,0,3,0,3,3,3,0,0,0]
-matrix_mue = open("matrix_mue.txt", "w+")
+matrix_e = open("matrix_e.txt", "w+")
 
 def getmue(action,N):
     lenth = len(action)
@@ -28,24 +28,21 @@ def getmue(action,N):
             y_position=y_position-1
         else :
             y_position=y_position+1
-        
-        
-    return matrix
+    return matrix    
     
     
-
+def print_matrix_e(matrix):    
+    
+    matrix = np.array(matrix)
+    matrix = matrix.round(decimals=2)
+    row,col = matrix.shape
+    for i in range(row):
+        for j in range(col):
+            matrix_e.write(str(matrix[i,j]) + "\t")
+        matrix_e.write("\n")
+    matrix_e.close()
+    
 matrix= getmue(action,20)
-matrix = np.array(matrix)
-matrix = matrix.round(decimals=2)
-row,col = matrix.shape
-print row,col
-
-for i in range(row):
-    for j in range(col):
-        matrix_mue.write(str(matrix[i,j]) + "\t")
-    matrix_mue.write("\n")
+print_matrix_e(matrix)
 
 
-
-
-matrix_mue.close()
